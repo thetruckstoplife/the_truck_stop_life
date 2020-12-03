@@ -1,25 +1,25 @@
 <template>
   <div id="settings-btn">
-    <!-- check if the button is 'Filtered' or 'OK' -->
-    <div v-if="currentNav() === 'Filtered'">
-      <button v-on:click="setButtonView()">Filter</button>
+    <!-- check if the button is 'Filter' or 'OK' -->
+    <div v-if="this.$store.state.buttonView === 'Filter'">
+      <button v-on:click="changeButtonView()">
+        {{ this.$store.state.buttonView }}
+      </button>
     </div>
-    <div v-if="currentNav() === 'OK'">
-      <button>OK</button>
+    <div v-if="this.$store.state.buttonView === 'OK'">
+      <button v-on:click="changeButtonView()">
+        {{ this.$store.state.buttonView }}
+      </button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  el: "settings-btn",
-  computed: {
-    // get val of buttonView
-    currentNav() {
-      return this.$store.getters.currentNav;
-    },
-    setButtonView() {
-      return this.store.getters.setButtonView;
+  methods: {
+    // change val of buttonView
+    changeButtonView() {
+      this.$store.commit("setButtonView");
     },
   },
 };

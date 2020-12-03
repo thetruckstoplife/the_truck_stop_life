@@ -7,7 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     locations: [],
-    buttonView: "Filtered",
+    buttonView: "Filter",
   },
   getters: {
     currentNav: (state) => {
@@ -19,11 +19,10 @@ export default new Vuex.Store({
       state.locations = locations;
     },
     setButtonView(state) {
-      if (state.buttonView === "Filtered") {
+      if (state.buttonView === "Filter") {
         state.buttonView = "OK";
-      }
-      if (state.buttonView === "OK") {
-        state.buttonView = "Filtered";
+      } else if (state.buttonView === "OK") {
+        state.buttonView = "Filter";
       }
     },
   },
