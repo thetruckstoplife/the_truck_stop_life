@@ -15,16 +15,6 @@ app.use(
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, "..", "dist")));
 
-app.get("/api/dummy", async (req, res) => {
-  try {
-    console.log("test");
-    res.send("test");
-  } catch (err) {
-    console.error("Error loading locations!", err);
-    res.send("oh no!");
-  }
-});
-
 app.get("/api/locations", async (req, res) => {
   try {
     const locations = await db.select().table("locations");
