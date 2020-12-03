@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node server",
+    "start": "node ./server/index.js && ./data/import.js",
     "hack:client": "vue-cli-service serve",
-    "hack:server": "nodemon server",
+    "hack:server": "nodemon ./server/index.js",
     "hack": "concurrently \"yarn hack:server\" \"yarn hack:client\"",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
