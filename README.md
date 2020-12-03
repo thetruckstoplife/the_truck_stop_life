@@ -1,2 +1,2 @@
-# The Truck Stop Life
+# thetruckstoplife
 cc16 + ccj3 first team project
