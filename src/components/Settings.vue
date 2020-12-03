@@ -11,7 +11,7 @@
           id="atm"
           type="checkbox"
           v-model="array[0].atm"
-          v-on:click="setFilter()"
+          v-on:click="setFilter('atm')"
         />
         <span class="slider round"></span>
       </label>
@@ -23,7 +23,7 @@
             id="shower"
             type="checkbox"
             v-model="array[1].shower"
-            v-on:click="setFilter()"
+            v-on:click="setFilter('shower')"
           />
           <span class="slider round"></span>
         </label>
@@ -35,7 +35,7 @@
             id="park"
             type="checkbox"
             v-model="array[2].park"
-            v-on:click="setFilter()"
+            v-on:click="setFilter('park')"
           />
           <span class="slider round"></span>
         </label>
@@ -47,7 +47,7 @@
             id="wifi"
             type="checkbox"
             v-model="array[3].wifi"
-            v-on:click="setFilter()"
+            v-on:click="setFilter('wifi')"
           />
           <span class="slider round"></span>
         </label>

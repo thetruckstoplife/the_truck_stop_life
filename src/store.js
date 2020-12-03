@@ -6,19 +6,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    locations: [
-      {
-        position: {
-          lat: 32.844151,
-          lng: -86.591963,
-        },
-        key: "Site 368",
-        defaultAnimation: 2,
-        atm: true,
-        shower: false,
-        overNight: true,
-      },
-    ],
+    locations: [],
     buttonView: "Filter",
     filter: [
       { atm: false },
@@ -53,21 +41,26 @@ export default new Vuex.Store({
       }
     },
     setFilteredLocations(state) {
-      let result = state.locations.slice();
-      let category = [];
+      let result;
+      let categoryToBeFiltered = [];
+      console.log(state.filter);
       state.filter.forEach((category) => {
         for (let key in category) {
           if (category[key] === true) {
-            category.push = key;
+            categoryToBeFiltered.push(key);
           }
         }
       });
-      if (category.length) {
-        for (let name of category) {
-          console.log("Filtering In Progress: ", category);
-          result = result.filter((location) => location[name] === true);
+      console.log(categoryToBeFiltered);
+      if (categoryToBeFiltered.length) {
+        for (let name of categoryToBeFiltered) {
+          console.log("Filtering In Progress: ", name);
+          result = state.locations.filter(
+            (location) => location[name] === true
+          );
         }
       }
+      console.log(result);
       state.filteredLocation = result;
       console.log("Filtering Completed: ", state.filteredLocation);
     },
@@ -91,28 +84,3 @@ export default new Vuex.Store({
     },
   },
 });
-
-// {
-// id: 2,
-// position: {
-//   lat: 34.367333,
-//   lng: -86.89353,
-// },
-// name: "Site 381",
-// atm: "atm",
-// shower: "shower",
-// overNightParking: "over-night-parking",
-// defaultAnimation: 2,
-// },
-// {
-// id: 3,
-// position: {
-// lat: 33.790777,
-// lng: -87.241662,
-// },
-// name: "Site 466",
-// atm: "atm",
-// shower: "shower",
-// overNightParking: "over-night-parking",
-// defaultAnimation: 2,
-// },
