@@ -64,7 +64,7 @@ export default new Vuex.Store({
         }
       }
       state.filteredLocation = result;
-      console.log("Filtering Completed: ", category);
+      console.log("Filtering Completed: ", state.filteredLocation);
     },
   },
   actions: {

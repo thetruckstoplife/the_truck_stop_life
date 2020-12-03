@@ -6,7 +6,7 @@
     style="width: 100%; height: 600px"
   >
     <GmapMarker
-      v-for="location in this.$store.state.locations"
+      v-for="location in this.$store.state.filteredLocation"
       :key="location.key"
       :position="location.position"
       :animation="location.defaultAnimation"
@@ -37,15 +37,6 @@ export default {
       this.$store.commit("setFilteredLocations");
     },
     markerRightClicked() {},
-    // :options="{
-    //   zoomControl: true,
-    //   mapTypeControl: false,
-    //   scaleControl: true,
-    //   streetViewControl: false,
-    //   rotateControl: true,
-    //   fullscreenControl: true,
-    //   disableDefaultUi: false,
-    // }"
   },
 };
 </script>
