@@ -3,11 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-<<<<<<< HEAD
-    "start": "node ./server/index.js && ./data/import.js",
-=======
     "start": "node ./server/index.js",
->>>>>>> 8e805881558891e7e1d63dabda92e2d7464381ea
+    "seed": "node ./data/import.js",
     "hack:client": "vue-cli-service serve",
     "hack:server": "nodemon ./server/index.js",
     "hack": "concurrently \"yarn hack:server\" \"yarn hack:client\"",
