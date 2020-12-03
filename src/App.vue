@@ -4,15 +4,15 @@
     <div>
       <Map />
     </div>
-      <Navbar />
     <div>
+      <Navbar />
+    </div>
   </div>
 </template>
 
 <script>
 import Map from "./components/Map";
-import Navbar from './components/Navbar.vue';
-
+import Navbar from "./components/Navbar.vue";
 
 export default {
   name: "app",
