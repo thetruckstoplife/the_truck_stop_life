@@ -7,6 +7,12 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     locations: [],
+    buttonView: "Filtered",
+  },
+  getters: {
+    currentNav: (state) => {
+      return state.buttonView;
+    },
   },
   mutations: {
     setLocations(state, locations) {
