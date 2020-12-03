@@ -3,7 +3,16 @@
     :zoom="4"
     :center="{ lat: 25.7392, lng: -104.9903 }"
     map-type-id="terrain"
-    style="width: 100%; height: 300px"
+    style="width: 100%; height: 600px"
+    :options="{
+      zoomControl: true,
+      mapTypeControl: false,
+      scaleControl: true,
+      streetViewControl: false,
+      rotateControl: true,
+      fullscreenControl: true,
+      disableDefaultUi: false,
+    }"
   >
     <GmapMarker
       v-for="location in locations"
@@ -36,3 +45,5 @@ export default {
   },
 };
 </script>
+
+<style></style>
