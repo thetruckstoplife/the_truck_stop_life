@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node ./server/index.js && ./data/import.js",
+    "start": "node ./server/index.js",
     "hack:client": "vue-cli-service serve",
     "hack:server": "nodemon ./server/index.js",
     "hack": "concurrently \"yarn hack:server\" \"yarn hack:client\"",
