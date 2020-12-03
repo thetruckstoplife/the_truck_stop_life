@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./server/index.js",
+    "seed": "node ./data/import.js",
     "hack:client": "vue-cli-service serve",
     "hack:server": "nodemon ./server/index.js",
     "hack": "concurrently \"yarn hack:server\" \"yarn hack:client\"",
