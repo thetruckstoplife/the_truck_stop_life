@@ -2,10 +2,10 @@
   <div id="settings-btn">
     <!-- check if the button is 'Filtered' or 'OK' -->
     <div v-if="currentNav() === 'Filtered'">
-      <button v-on:click="setButtonView()">{{ filter }}</button>
+      <button v-on:click="setButtonView()">Filter</button>
     </div>
     <div v-if="currentNav() === 'OK'">
-      <button>{{ ok }}</button>
+      <button>OK</button>
     </div>
   </div>
 </template>

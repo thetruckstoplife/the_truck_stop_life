@@ -4,16 +4,21 @@
     <div>
       <Map />
     </div>
+      <Navbar />
+    <div>
   </div>
 </template>
 
 <script>
 import Map from "./components/Map";
+import Navbar from './components/Navbar.vue';
+
 
 export default {
   name: "app",
   components: {
     Map,
+    Navbar,
   },
 };
 </script>
