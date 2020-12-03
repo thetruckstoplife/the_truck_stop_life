@@ -1,20 +1,28 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png" />
-    <div>
+    <div v-if="this.$store.state.buttonView === 'Filter'">
       <Map />
+    </div>
+    <div v-if="this.$store.state.buttonView === 'OK'">
+      <Settings />
+    </div>
+    <div>
+      <Navbar />
     </div>
   </div>
 </template>
 
 <script>
 import Map from "./components/Map";
+import Navbar from "./components/Navbar.vue";
+import Settings from "./components/Settings.vue";
 
 export default {
   name: "app",
   components: {
-    HelloWorld,
     Map,
+    Navbar,
+    Settings,
   },
 };
 </script>
