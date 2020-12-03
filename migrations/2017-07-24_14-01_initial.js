@@ -7,6 +7,20 @@ exports.up = function(knex) {
     table.float("longitude");
 
     table.text("name").notNullable();
+
+    table.text("state").notNullable();
+
+    table.boolean("card");
+
+    table.boolean("cash");
+
+    table.boolean("park");
+
+    table.boolean("shower");
+
+    table.boolean("wifi");
+
+    table.boolean("atm");
   });
 };
 
