@@ -1,24 +1,46 @@
 <template>
   <div id="settings">
+    <!-- Toggles for filtering truck stops -->
     <div>
       <div><h1>Find truck stops that have...</h1></div>
       <p>ATM</p>
       <label class="switch">
-        <input id="atm" type="checkbox" />
+        <input
+          id="atm"
+          :checked="atm"
+          value="atm"
+          type="checkbox"
+          v-model="array[0].atm"
+          v-on:click="setFilter(value)"
+        />
         <span class="slider round"></span>
       </label>
     </div>
     <div>
       <p>Showers</p>
       <label class="switch">
-        <input id="shower" type="checkbox" />
+        <input
+          id="shower"
+          :checked="shower"
+          value="shower"
+          type="checkbox"
+          v-model="array[1].shower"
+          v-on:click="setFilter(value)"
+        />
         <span class="slider round"></span>
       </label>
     </div>
     <div>
       <p>Overnight Parking</p>
       <label class="switch">
-        <input id="shower" type="checkbox" />
+        <input
+          id="overnight-parking"
+          :checked="overNight"
+          value="overnight-parking"
+          type="checkbox"
+          v-model="array[2].overNight"
+          v-on:click="setFilter(value)"
+        />
         <span class="slider round"></span>
       </label>
     </div>
@@ -26,7 +48,19 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      //   array: [] // Shows filters that are toggled on
+      array: this.$store.getters.selectedFilters,
+    };
+  },
+  methods: {
+    setFilter(array) {
+      this.$store.commit("setFilter", array);
+    },
+  },
+};
 </script>
 
 <style scoped>

@@ -6,17 +6,34 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    locations: [],
+    locations: [
+      {
+        position: {
+          lat: 32.844151,
+          lng: -86.591963,
+        },
+        key: "Site 368",
+        defaultAnimation: 2,
+      },
+    ],
     buttonView: "Filter",
-    filter: [],
+    filter: [{ atm: false }, { shower: false }, { overNight: false }],
     filteredLocation: [],
   },
   getters: {
-    currentNav: (state) => {
-      return state.buttonView;
+    selectedFilters: (state) => {
+      return state.filter;
     },
   },
   mutations: {
+    setFilter(state, filteringCategory) {
+      for (const key in state.filter) {
+        if (filteringCategory === key) {
+          state.filter[key] = !state.filter[key];
+        }
+      }
+      // state.filter = filteringCategory;
+    },
     setLocations(state, locations) {
       state.locations = locations;
     },
@@ -25,13 +42,6 @@ export default new Vuex.Store({
         state.buttonView = "OK";
       } else if (state.buttonView === "OK") {
         state.buttonView = "Filter";
-      }
-    },
-    setFilter(state, name) {
-      if (state.filter.includes(name)) {
-        state.filter.splice(state.filter.indexOf(name), 1);
-      } else {
-        state.filter.push(name);
       }
     },
     setFilteredLocations(state) {
@@ -67,3 +77,28 @@ export default new Vuex.Store({
     },
   },
 });
+
+// {
+// id: 2,
+// position: {
+//   lat: 34.367333,
+//   lng: -86.89353,
+// },
+// name: "Site 381",
+// atm: "atm",
+// shower: "shower",
+// overNightParking: "over-night-parking",
+// defaultAnimation: 2,
+// },
+// {
+// id: 3,
+// position: {
+// lat: 33.790777,
+// lng: -87.241662,
+// },
+// name: "Site 466",
+// atm: "atm",
+// shower: "shower",
+// overNightParking: "over-night-parking",
+// defaultAnimation: 2,
+// },
