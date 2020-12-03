@@ -36,11 +36,25 @@
         <p>Overnight Parking</p>
         <label class="switch">
           <input
-            id="overnight-parking"
-            :checked="overNight"
-            value="overnight-parking"
+            id="park"
+            :checked="park"
+            value="park"
             type="checkbox"
-            v-model="array[2].overNight"
+            v-model="array[2].park"
+            v-on:click="setFilter(value)"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div>
+        <p>Wifi</p>
+        <label class="switch">
+          <input
+            id="wifi"
+            :checked="wifi"
+            value="wifi"
+            type="checkbox"
+            v-model="array[3].wifi"
             v-on:click="setFilter(value)"
           />
           <span class="slider round"></span>
@@ -72,8 +86,7 @@ p {
   font: 400 20px Verdana;
 }
 #toggles {
-  top: 50%;
-  left: 50%;
+  margin-bottom: 150px;
 }
 .switch {
   position: relative;
