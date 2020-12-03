@@ -1,19 +1,17 @@
 <template>
   <div id="settings">
-    <!-- Toggles for filtering truck stops -->
     <div>
       <div><h1>Find truck stops that have...</h1></div>
     </div>
+    <!-- Toggles for filtering truck stops -->
     <div id="toggles">
       <p>ATM</p>
       <label class="switch">
         <input
           id="atm"
-          :checked="atm"
-          value="atm"
           type="checkbox"
           v-model="array[0].atm"
-          v-on:click="setFilter(value)"
+          v-on:click="setFilter()"
         />
         <span class="slider round"></span>
       </label>
@@ -23,11 +21,9 @@
         <label class="switch">
           <input
             id="shower"
-            :checked="shower"
-            value="shower"
             type="checkbox"
             v-model="array[1].shower"
-            v-on:click="setFilter(value)"
+            v-on:click="setFilter()"
           />
           <span class="slider round"></span>
         </label>
@@ -36,12 +32,22 @@
         <p>Overnight Parking</p>
         <label class="switch">
           <input
-            id="overnight-parking"
-            :checked="overNight"
-            value="overnight-parking"
+            id="park"
             type="checkbox"
-            v-model="array[2].overNight"
-            v-on:click="setFilter(value)"
+            v-model="array[2].park"
+            v-on:click="setFilter()"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div>
+        <p>Wifi</p>
+        <label class="switch">
+          <input
+            id="wifi"
+            type="checkbox"
+            v-model="array[3].wifi"
+            v-on:click="setFilter()"
           />
           <span class="slider round"></span>
         </label>
@@ -72,8 +78,7 @@ p {
   font: 400 20px Verdana;
 }
 #toggles {
-  top: 50%;
-  left: 50%;
+  margin-bottom: 150px;
 }
 .switch {
   position: relative;

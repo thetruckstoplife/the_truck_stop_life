@@ -20,7 +20,12 @@ export default new Vuex.Store({
       },
     ],
     buttonView: "Filter",
-    filter: [{ atm: false }, { shower: false }, { overNight: false }],
+    filter: [
+      { atm: false },
+      { shower: false },
+      { park: false },
+      { wifi: false },
+    ],
     filteredLocation: [],
   },
   getters: {
