@@ -18,6 +18,14 @@ export default new Vuex.Store({
     setLocations(state, locations) {
       state.locations = locations;
     },
+    setButtonView(state) {
+      if (state.buttonView === "Filtered") {
+        state.buttonView = "OK";
+      }
+      if (state.buttonView === "OK") {
+        state.buttonView = "Filtered";
+      }
+    },
   },
   actions: {
     async loadMarkers({ commit }) {

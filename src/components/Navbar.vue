@@ -2,7 +2,7 @@
   <div id="settings-btn">
     <!-- check if the button is 'Filtered' or 'OK' -->
     <div v-if="currentNav() === 'Filtered'">
-      <button>{{ filter }}</button>
+      <button v-on:click="setButtonView()">{{ filter }}</button>
     </div>
     <div v-if="currentNav() === 'OK'">
       <button>{{ ok }}</button>
@@ -17,6 +17,9 @@ export default {
     // get val of buttonView
     currentNav() {
       return this.$store.getters.currentNav;
+    },
+    setButtonView() {
+      return this.store.getters.setButtonView;
     },
   },
 };
