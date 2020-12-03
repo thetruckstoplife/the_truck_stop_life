@@ -30,10 +30,11 @@ import { gmapApi } from "vue2-google-maps";
 export default {
   mounted() {
     this.getLocations();
+    // this.getFilteredLocations();
   },
   computed: {
     locations() {
-      return this.$store.state.locations;
+      return this.$store.state.filteredLocation;
     },
     google: gmapApi,
   },
@@ -41,6 +42,9 @@ export default {
     getLocations() {
       this.$store.dispatch("loadMarkers");
     },
+    // getFilteredLocations() {
+    //   this.$store.commit("setFilteredLocation");
+    // },
     markerRightClicked() {},
   },
 };
