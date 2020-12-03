@@ -3,6 +3,8 @@
     <!-- Toggles for filtering truck stops -->
     <div>
       <div><h1>Find truck stops that have...</h1></div>
+    </div>
+    <div id="toggles">
       <p>ATM</p>
       <label class="switch">
         <input
@@ -15,34 +17,35 @@
         />
         <span class="slider round"></span>
       </label>
-    </div>
-    <div>
-      <p>Showers</p>
-      <label class="switch">
-        <input
-          id="shower"
-          :checked="shower"
-          value="shower"
-          type="checkbox"
-          v-model="array[1].shower"
-          v-on:click="setFilter(value)"
-        />
-        <span class="slider round"></span>
-      </label>
-    </div>
-    <div>
-      <p>Overnight Parking</p>
-      <label class="switch">
-        <input
-          id="overnight-parking"
-          :checked="overNight"
-          value="overnight-parking"
-          type="checkbox"
-          v-model="array[2].overNight"
-          v-on:click="setFilter(value)"
-        />
-        <span class="slider round"></span>
-      </label>
+
+      <div>
+        <p>Showers</p>
+        <label class="switch">
+          <input
+            id="shower"
+            :checked="shower"
+            value="shower"
+            type="checkbox"
+            v-model="array[1].shower"
+            v-on:click="setFilter(value)"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div>
+        <p>Overnight Parking</p>
+        <label class="switch">
+          <input
+            id="overnight-parking"
+            :checked="overNight"
+            value="overnight-parking"
+            type="checkbox"
+            v-model="array[2].overNight"
+            v-on:click="setFilter(value)"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
     </div>
   </div>
 </template>
@@ -51,12 +54,13 @@
 export default {
   data() {
     return {
-      //   array: [] // Shows filters that are toggled on
+      // Gets object with state of toggles in input :checked
       array: this.$store.getters.selectedFilters,
     };
   },
   methods: {
     setFilter(array) {
+      // Changes boolean value of input :checked to opposite
       this.$store.commit("setFilter", array);
     },
   },
@@ -64,6 +68,13 @@ export default {
 </script>
 
 <style scoped>
+p {
+  font: 400 20px Verdana;
+}
+#toggles {
+  top: 50%;
+  left: 50%;
+}
 .switch {
   position: relative;
   display: inline-block;
@@ -102,11 +113,11 @@ export default {
 }
 
 input:checked + .slider {
-  background-color: green;
+  background-color: #ef233c;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px green;
+  box-shadow: 0 0 1px #ef233c;
 }
 
 input:checked + .slider:before {
