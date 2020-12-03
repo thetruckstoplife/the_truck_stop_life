@@ -4,15 +4,6 @@
     :center="{ lat: 25.7392, lng: -104.9903 }"
     map-type-id="terrain"
     style="width: 100%; height: 600px"
-    :options="{
-      zoomControl: true,
-      mapTypeControl: false,
-      scaleControl: true,
-      streetViewControl: false,
-      rotateControl: true,
-      fullscreenControl: true,
-      disableDefaultUi: false,
-    }"
   >
     <GmapMarker
       v-for="location in locations"
@@ -30,10 +21,19 @@ import { gmapApi } from "vue2-google-maps";
 export default {
   mounted() {
     this.getLocations();
-    // this.getFilteredLocations();
   },
   computed: {
     locations() {
+      if (
+        this.$store.state.filter.every((flags) => {
+          for (let condition in flags) {
+            if (flags[condition] === true) return false;
+          }
+          return true;
+        })
+      ) {
+        return this.$store.state.locations;
+      }
       return this.$store.state.filteredLocation;
     },
     google: gmapApi,
@@ -42,9 +42,9 @@ export default {
     getLocations() {
       this.$store.dispatch("loadMarkers");
     },
-    // getFilteredLocations() {
-    //   this.$store.commit("setFilteredLocation");
-    // },
+    getFilteredLocations() {
+      this.$store.commit("setFilteredLocations");
+    },
     markerRightClicked() {},
   },
 };
