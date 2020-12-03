@@ -1,19 +1,17 @@
 <template>
   <div id="settings">
-    <!-- Toggles for filtering truck stops -->
     <div>
       <div><h1>Find truck stops that have...</h1></div>
     </div>
+    <!-- Toggles for filtering truck stops -->
     <div id="toggles">
       <p>ATM</p>
       <label class="switch">
         <input
           id="atm"
-          :checked="atm"
-          value="atm"
           type="checkbox"
           v-model="array[0].atm"
-          v-on:click="setFilter(value)"
+          v-on:click="setFilter()"
         />
         <span class="slider round"></span>
       </label>
@@ -23,11 +21,9 @@
         <label class="switch">
           <input
             id="shower"
-            :checked="shower"
-            value="shower"
             type="checkbox"
             v-model="array[1].shower"
-            v-on:click="setFilter(value)"
+            v-on:click="setFilter()"
           />
           <span class="slider round"></span>
         </label>
@@ -37,11 +33,9 @@
         <label class="switch">
           <input
             id="park"
-            :checked="park"
-            value="park"
             type="checkbox"
             v-model="array[2].park"
-            v-on:click="setFilter(value)"
+            v-on:click="setFilter()"
           />
           <span class="slider round"></span>
         </label>
@@ -51,11 +45,9 @@
         <label class="switch">
           <input
             id="wifi"
-            :checked="wifi"
-            value="wifi"
             type="checkbox"
             v-model="array[3].wifi"
-            v-on:click="setFilter(value)"
+            v-on:click="setFilter()"
           />
           <span class="slider round"></span>
         </label>
