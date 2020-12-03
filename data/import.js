@@ -43,11 +43,6 @@ const db = require("../server/knex.js");
           atm = able.CustomField.Name === "ATM";
         }
       }
-      // let omise = [];
-      // for (const concept of location.Site.Concepts) {
-      //   omise.push(concept.Concept.Name);
-      // }
-      // console.log(name, omise);
 
       const result = await db("locations").insert({
         id,
