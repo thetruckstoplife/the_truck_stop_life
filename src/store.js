@@ -13,8 +13,20 @@ export default new Vuex.Store({
       { shower: false },
       { park: false },
       { wifi: false },
+      { mcd: false },
+      { sub: false },
+      { denny: false },
+      { br: false },
     ],
     filteredLocation: [],
+    mapView: false,
+    currentLocation: {
+      lat: 0,
+      lng: 0,
+    },
+    flagCount: 0,
+    flagLocation: [],
+    favoriteView: false,
   },
   getters: {
     selectedFilters: (state) => {
@@ -43,7 +55,7 @@ export default new Vuex.Store({
     setFilteredLocations(state) {
       let result;
       let categoryToBeFiltered = [];
-      console.log(state.filter);
+      console.log("filter state", state.filter);
       state.filter.forEach((category) => {
         for (let key in category) {
           if (category[key] === true) {
@@ -51,18 +63,28 @@ export default new Vuex.Store({
           }
         }
       });
-      console.log(categoryToBeFiltered);
+      console.log("category to be filtered:", state.categoryToBeFiltered);
       if (categoryToBeFiltered.length) {
         for (let name of categoryToBeFiltered) {
-          console.log("Filtering In Progress: ", name);
           result = state.locations.filter(
             (location) => location[name] === true
           );
         }
       }
-      console.log(result);
       state.filteredLocation = result;
-      console.log("Filtering Completed: ", state.filteredLocation);
+      console.log("filtered location:", state.filteredLocation);
+    },
+    setMapView(state) {
+      state.mapView = true;
+    },
+    setFlagLocation(state, location) {
+      state.flagLocation.push(location);
+    },
+    setFavoriteView(state) {
+      state.favoriteView = !state.favoriteView;
+    },
+    setFlagCount(state) {
+      state.flagCount++;
     },
   },
   actions: {
@@ -82,6 +104,10 @@ export default new Vuex.Store({
           shower: location.shower,
           wifi: location.wifi,
           atm: location.atm,
+          mcd: location.mcd,
+          sub: location.sub,
+          denny: location.denny,
+          br: location.br,
           state: location.state,
         }));
         commit("setLocations", markers);

@@ -1,11 +1,5 @@
 <template>
   <div>
-    <h4>Your coordinates:</h4>
-    <p>
-      {{ yourCoordinates.lat }} Latitude, {{ yourCoordinates.lng }} Longitude
-    </p>
-    <h4>Map coordinates:</h4>
-    <p>{{ mapCoordinates.lat }} Latitude, {{ mapCoordinates.lng }} Longitude</p>
     <GmapMap
       :zoom="7"
       :center="yourCoordinates"
@@ -21,14 +15,16 @@
         disableDefaultUi: false,
       }"
     >
-      <GmapMarker :position="yourCoordinates" />
-      <GmapMarker :position="mapCoordinates" />
+      <GmapMarker :position="yourCoordinates" :icon="startOptions" />
+
+      <GmapMarker :position="mapCoordinates" @click="leftClicked" />
 
       <GmapMarker
         v-for="location in locations"
         :key="location.key"
         :position="location.position"
         :animation="location.defaultAnimation"
+        :icon="truckOptions"
         @rightclick="markerRightClicked"
       />
     </GmapMap>
@@ -42,6 +38,7 @@ export default {
   data() {
     return {
       // Orland, FL just for now
+      //  this.$store.state.currentLocation  -> should set this as the first Gmap Marker
       yourCoordinates: {
         lat: 28.538336,
         lng: -81.379234,
@@ -51,28 +48,23 @@ export default {
         lat: 30.516319,
         lng: -81.633737,
       },
+      startOptions: {
+        url: "http://maps.google.com/mapfiles/kml/paddle/ylw-stars.png",
+      },
+      truckOptions: {
+        url: "http://maps.google.com/mapfiles/kml/shapes/truck.png",
+      },
     };
   },
-
-  /*
-  created() {
-    // get the current coordinates from browser request
-    //this is going to be CC location in Japan, not the US.
-    //so we should use a fixed coodinates in somewhere in the US?
-    this.$getLocation({})
-      .then(coordinates => {
-        this.yourCoordinates = coordinates;
-      })
-      .catch(error => alert(error));
-  },
-  */
 
   mounted() {
     this.getLocations();
   },
   computed: {
     locations() {
-      if (
+      if (this.$store.state.favoriteView) {
+        return this.$store.state.flagLocation;
+      } else if (
         this.$store.state.filter.every((flags) => {
           for (let condition in flags) {
             if (flags[condition] === true) return false;
@@ -90,7 +82,19 @@ export default {
     getLocations() {
       this.$store.dispatch("loadMarkers");
     },
-    markerRightClicked() {},
+    leftClicked(event) {
+      this.$store.commit("setFlagCount");
+      const markLocation = JSON.stringify(event.latLng.toJSON(), null, 2);
+      const reformatLocationInfo = {
+        postion: JSON.parse(markLocation),
+        key: this.$store.state.flagCount,
+      };
+      this.$store.commit("setFlagLocation", reformatLocationInfo);
+    },
+    checkClick(event) {
+      console.log(event);
+      console.log(event.target);
+    },
   },
 };
 </script>
