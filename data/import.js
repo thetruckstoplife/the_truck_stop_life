@@ -44,6 +44,25 @@ const db = require("../server/knex.js");
         }
       }
 
+      let mcd = false; //mcdonald's
+      let sub = false; //subway
+      let denny = false; //denny's
+      let br = false; //31
+
+      for (const able of location.Site.Concepts) {
+        if (!mcd) {
+          mcd = able.Concept.Name === "McDonald's";
+        }
+        if (!sub) {
+          sub = able.Concept.Name === "Subway";
+        }
+        if (!denny) {
+          denny = able.Concept.Name === "Denny's";
+        }
+        if (!br) {
+          br = able.Concept.Name === "Baskin Robbins";
+        }
+      }
       const result = await db("locations").insert({
         id,
         latitude,
@@ -56,6 +75,10 @@ const db = require("../server/knex.js");
         shower,
         wifi,
         atm,
+        mcd,
+        sub,
+        denny,
+        br,
       });
       console.log(result);
     }

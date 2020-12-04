@@ -23,11 +23,23 @@ exports.up = function(knex) {
         table.boolean("wifi");
 
         table.boolean("atm");
+
+        table.boolean("mcd");
+
+        table.boolean("sub");
+
+        table.boolean("denny");
+
+        table.boolean("br");
       });
     }
   });
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTable("locations");
+  return knex.schema.hasTable("locations").then(function(exists) {
+    if (exists) {
+      return knex.schema.dropTable("locations");
+    }
+  });
 };
