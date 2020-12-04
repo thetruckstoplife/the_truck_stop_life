@@ -19,3 +19,4 @@ App demo: https://the-truck-stop-life.herokuapp.com
 ## 使い方/Getting Started
 
 ![App Preview](./img/app-demo.jpg)
+<img src="/img/app-demo.jpg" width="100px">
