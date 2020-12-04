@@ -16,7 +16,24 @@ cc16 + ccj3 first team project
 
 App demo: https://the-truck-stop-life.herokuapp.com
 
-## 使い方/Getting Started
+## App の使い方
 
-![App Preview](./img/app-demo.jpg)
-<img src="/img/app-demo.jpg" width="100px">
+English is below!
+
+1. アプリを開くと、全てのトラックストップを見ることができます。
+
+2. Filter ボタンを押すと設備ごとのフィルターをかける事ができます。
+
+3.
+
+## Getting Started
+
+1. You can see all nearby truck stops when you open the app.  
+   ![App Preview](./img/app-demo.jpg)
+2. You can filter truck stop amenities by pushing the filter button and toggling your selections on or off.
+
+3.
+
+## 使用した技術/Technologies Used:
+
+![Used Tech](./img/UsedTech.png)
