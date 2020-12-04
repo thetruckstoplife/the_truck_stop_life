@@ -7,4 +7,4 @@
 
 cc16 + ccj3 first team project
 
-## アプリの概要/About this App
+## アプリの概要/About this App  
