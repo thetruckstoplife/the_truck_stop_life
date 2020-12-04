@@ -18,6 +18,4 @@ App demo: https://the-truck-stop-life.herokuapp.com
 
 ## 使い方/Getting Started
 
-https://raw.github.com/wiki/ユーザ名/リポジトリ名/画像へのパス
-
-![App Preview](./img/app-demo.jpg)
+![App Preview](<./img/app-demo(1).jpg>)
