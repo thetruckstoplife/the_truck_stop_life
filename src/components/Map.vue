@@ -15,10 +15,8 @@
         disableDefaultUi: false,
       }"
     >
-      <GmapMarker
-        :position="this.$store.state.currentLocation"
-        :icon="startOptions"
-      />
+      <GmapMarker :position="yourCoordinates" :icon="startOptions" />
+
       <GmapMarker :position="mapCoordinates" @click="leftClicked" />
 
       <GmapMarker
@@ -40,6 +38,7 @@ export default {
   data() {
     return {
       // Orland, FL just for now
+      //  this.$store.state.currentLocation  -> should set this as the first Gmap Marker
       yourCoordinates: {
         lat: 28.538336,
         lng: -81.379234,

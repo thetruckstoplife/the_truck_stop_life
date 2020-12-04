@@ -97,6 +97,10 @@ export default new Vuex.Store({
           shower: location.shower,
           wifi: location.wifi,
           atm: location.atm,
+          mcd: location.mcd,
+          sub: location.sub,
+          denny: location.denny,
+          br: location.br,
           state: location.state,
         }));
         commit("setLocations", markers);
