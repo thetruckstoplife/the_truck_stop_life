@@ -6,7 +6,24 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    locations: [],
+    locations: [
+      {
+        id: 368,
+        position: {
+          lat: 32.844151,
+          lng: -86.591963,
+        },
+        key: "Site 368",
+        state: "AL",
+        card: true,
+        cash: true,
+        park: true,
+        shower: true,
+        wifi: true,
+        atm: true,
+        defaultAnimation: 2,
+      },
+    ],
     buttonView: "Filter",
     filter: [
       { atm: false },

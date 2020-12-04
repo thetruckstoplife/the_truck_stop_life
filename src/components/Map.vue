@@ -10,7 +10,10 @@
       :key="location.key"
       :position="location.position"
       :animation="location.defaultAnimation"
-      @rightclick="markerRightClicked"
+      :clickable="true"
+      :draggable="true"
+      :icon="markerOptions"
+      @rightclick="markerRightClicked(event)"
     />
   </GmapMap>
 </template>
@@ -21,6 +24,14 @@ import { gmapApi } from "vue2-google-maps";
 export default {
   mounted() {
     this.getLocations();
+  },
+  data() {
+    return {
+      markerOptions: {
+        url:
+          "https://developers.google.com/maps/documentation/javascript/examples/full/images/parking_lot_maps.png",
+      },
+    };
   },
   computed: {
     locations() {
@@ -45,7 +56,14 @@ export default {
     getFilteredLocations() {
       this.$store.commit("setFilteredLocations");
     },
-    markerRightClicked() {},
+    markerRightClicked() {
+      if (event) {
+        console.log(event);
+        const lat = event.latLng.lat();
+        const lng = event.latLng.lng();
+        console.log(lat + ", " + lng);
+      }
+    },
   },
 };
 </script>
