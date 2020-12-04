@@ -4,9 +4,6 @@
       <div><h1>Find truck stops that have...</h1></div>
     </div>
     <!-- Toggles for filtering truck stops -->
-    <button class="favorite" type="button" v-on:click="changeFavoriteView">
-      Favorite
-    </button>
     <div id="toggles" class="wrapper">
       <div>
         <p>ATM</p>
@@ -122,9 +119,6 @@ export default {
       // Changes boolean value of input :checked to opposite
       this.$store.commit("setFilter", array);
     },
-    changeFavoriteView() {
-      this.$store.commit("setFavoriteView");
-    },
   },
 };
 </script>
@@ -194,18 +188,5 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
-}
-
-.favorite {
-  color: white;
-  font: 400 20px Verdana;
-  background-color: blue;
-  border-radius: 40px;
-  border: 0px;
-  width: 100px;
-  height: 50px;
-  margin: 0px;
-  cursor: pointer;
-  transition-duration: 0.4s;
 }
 </style>
