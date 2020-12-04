@@ -4,17 +4,19 @@
       <div><h1>Find truck stops that have...</h1></div>
     </div>
     <!-- Toggles for filtering truck stops -->
-    <div id="toggles">
-      <p>ATM</p>
-      <label class="switch">
-        <input
-          id="atm"
-          type="checkbox"
-          v-model="array[0].atm"
-          v-on:click="setFilter('atm')"
-        />
-        <span class="slider round"></span>
-      </label>
+    <div id="toggles" class="wrapper">
+      <div>
+        <p>ATM</p>
+        <label class="switch">
+          <input
+            id="atm"
+            type="checkbox"
+            v-model="array[0].atm"
+            v-on:click="setFilter('atm')"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
 
       <div>
         <p>Showers</p>
@@ -48,6 +50,54 @@
             type="checkbox"
             v-model="array[3].wifi"
             v-on:click="setFilter('wifi')"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div>
+        <p>McDonald's</p>
+        <label class="switch">
+          <input
+            id="mcd"
+            type="checkbox"
+            v-model="array[4].mcd"
+            v-on:click="setFilter('mcd')"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div>
+        <p>Subway</p>
+        <label class="switch">
+          <input
+            id="sub"
+            type="checkbox"
+            v-model="array[5].sub"
+            v-on:click="setFilter('sub')"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div>
+        <p>Denny's</p>
+        <label class="switch">
+          <input
+            id="denny"
+            type="checkbox"
+            v-model="array[6].denny"
+            v-on:click="setFilter('denny')"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div>
+        <p>Baskin Robbins</p>
+        <label class="switch">
+          <input
+            id="br"
+            type="checkbox"
+            v-model="array[7].br"
+            v-on:click="setFilter('br')"
           />
           <span class="slider round"></span>
         </label>

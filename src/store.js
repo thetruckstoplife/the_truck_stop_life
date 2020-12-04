@@ -6,32 +6,26 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    locations: [
-      {
-        id: 368,
-        position: {
-          lat: 32.844151,
-          lng: -86.591963,
-        },
-        key: "Site 368",
-        state: "AL",
-        card: true,
-        cash: true,
-        park: true,
-        shower: true,
-        wifi: true,
-        atm: true,
-        defaultAnimation: 2,
-      },
-    ],
+    locations: [],
     buttonView: "Filter",
     filter: [
       { atm: false },
       { shower: false },
       { park: false },
       { wifi: false },
+      { mcd: false },
+      { sub: false },
+      { denny: false },
+      { br: false },
     ],
     filteredLocation: [],
+    mapView: false,
+    currentLocation: {
+      lat: 0,
+      lng: 0,
+    },
+    flagCount: 0,
+    flagLocation: [],
   },
   getters: {
     selectedFilters: (state) => {
@@ -71,15 +65,18 @@ export default new Vuex.Store({
       console.log(categoryToBeFiltered);
       if (categoryToBeFiltered.length) {
         for (let name of categoryToBeFiltered) {
-          console.log("Filtering In Progress: ", name);
           result = state.locations.filter(
             (location) => location[name] === true
           );
         }
       }
-      console.log(result);
       state.filteredLocation = result;
-      console.log("Filtering Completed: ", state.filteredLocation);
+    },
+    setMapView(state) {
+      state.mapView = true;
+    },
+    setFlagLocation(state, location) {
+      state.flagLocation.push(location);
     },
   },
   actions: {

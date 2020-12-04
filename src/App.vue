@@ -1,13 +1,18 @@
 <template>
   <div id="app">
-    <div v-if="this.$store.state.buttonView === 'Filter'">
-      <Map />
+    <div v-if="this.$store.state.mapView === false">
+      <Initial />
     </div>
-    <div v-if="this.$store.state.buttonView === 'OK'">
-      <Settings />
-    </div>
-    <div>
-      <Navbar />
+    <div v-if="this.$store.state.mapView === true">
+      <div v-if="this.$store.state.buttonView === 'Filter'">
+        <Map />
+      </div>
+      <div v-if="this.$store.state.buttonView === 'OK'">
+        <Settings />
+      </div>
+      <div>
+        <Navbar />
+      </div>
     </div>
   </div>
 </template>
@@ -16,6 +21,7 @@
 import Map from "./components/Map";
 import Navbar from "./components/Navbar.vue";
 import Settings from "./components/Settings.vue";
+import Initial from "./components/Initial";
 
 export default {
   name: "app",
@@ -23,6 +29,7 @@ export default {
     Map,
     Navbar,
     Settings,
+    Initial,
   },
 };
 </script>

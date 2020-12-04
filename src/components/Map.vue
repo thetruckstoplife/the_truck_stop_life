@@ -8,7 +8,7 @@
     <p>{{ mapCoordinates.lat }} Latitude, {{ mapCoordinates.lng }} Longitude</p>
     <GmapMap
       :zoom="7"
-      :center="yourCoordinates"
+      :center="this.$store.state.currentLocation"
       map-type-id="terrain"
       style="width: 100%; height: 600px"
       :options="{
@@ -21,14 +21,18 @@
         disableDefaultUi: false,
       }"
     >
-      <GmapMarker :position="yourCoordinates" />
-      <GmapMarker :position="mapCoordinates" />
+      <GmapMarker
+        :position="this.$store.state.currentLocation"
+        :icon="startOptions"
+      />
+      <GmapMarker :position="mapCoordinates" @click="leftClicked" />
 
       <GmapMarker
         v-for="location in locations"
         :key="location.key"
         :position="location.position"
         :animation="location.defaultAnimation"
+        :icon="truckOptions"
         @rightclick="markerRightClicked"
       />
     </GmapMap>
@@ -55,21 +59,25 @@ export default {
         url:
           "https://developers.google.com/maps/documentation/javascript/examples/full/images/parking_lot_maps.png",
       },
+      startOptions: {
+        url: "http://maps.google.com/mapfiles/kml/paddle/ylw-stars.png",
+      },
+      truckOptions: {
+        url: "http://maps.google.com/mapfiles/kml/shapes/truck.png",
+      },
     };
   },
 
-  /*
-  created() {
-    // get the current coordinates from browser request
-    //this is going to be CC location in Japan, not the US.
-    //so we should use a fixed coodinates in somewhere in the US?
-    this.$getLocation({})
-      .then(coordinates => {
-        this.yourCoordinates = coordinates;
-      })
-      .catch(error => alert(error));
-  },
-  */
+  // created() {
+  //   // get the current coordinates from browser request
+  //   //this is going to be CC location in Japan, not the US.
+  //   //so we should use a fixed coodinates in somewhere in the US?
+  //   this.$getLocation({})
+  //     .then(coordinates => {
+  //       this.yourCoordinates = coordinates;
+  //     })
+  //     .catch(error => alert(error));
+  // },
 
   mounted() {
     this.getLocations();
@@ -94,7 +102,17 @@ export default {
     getLocations() {
       this.$store.dispatch("loadMarkers");
     },
-    markerRightClicked() {},
+    leftClicked(event) {
+      const markLocation = JSON.stringify(event.latLng.toJSON(), null, 2);
+      const reformatLocationInfo = {
+        postion: JSON.parse(markLocation),
+      };
+      this.$store.commit("setFlagLocation", reformatLocationInfo);
+    },
+    checkClick(event) {
+      console.log(event);
+      console.log(event.target);
+    },
   },
 };
 </script>
