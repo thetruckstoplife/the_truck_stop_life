@@ -7,4 +7,5 @@
 
 cc16 + ccj3 first team project
 
-# The Truck Stop Life
+## アプリの概要/About this App
+ 
