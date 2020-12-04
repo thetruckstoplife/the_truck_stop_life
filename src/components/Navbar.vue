@@ -24,7 +24,7 @@ export default {
     // change val of buttonView
     changeButtonView() {
       this.$store.commit("setButtonView");
-      this.$store.commit("setFilteredLocation");
+      this.$store.commit("setFilteredLocations");
     },
   },
 };

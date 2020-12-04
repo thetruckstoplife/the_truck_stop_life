@@ -69,10 +69,19 @@ export default {
 
   mounted() {
     this.getLocations();
-    // this.getFilteredLocations();
   },
   computed: {
     locations() {
+      if (
+        this.$store.state.filter.every((flags) => {
+          for (let condition in flags) {
+            if (flags[condition] === true) return false;
+          }
+          return true;
+        })
+      ) {
+        return this.$store.state.locations;
+      }
       return this.$store.state.filteredLocation;
     },
     google: gmapApi,
@@ -81,12 +90,7 @@ export default {
     getLocations() {
       this.$store.dispatch("loadMarkers");
     },
-    // getFilteredLocations() {
-    //   this.$store.commit("setFilteredLocation");
-    // },
-    markerRightClicked() {
-      // want to get the coordinate of the clicked place?
-    },
+    markerRightClicked() {},
   },
 };
 </script>
