@@ -54,7 +54,7 @@ export default new Vuex.Store({
     setFilteredLocations(state) {
       let result;
       let categoryToBeFiltered = [];
-      console.log(state.filter);
+      console.log("filter state", state.filter);
       state.filter.forEach((category) => {
         for (let key in category) {
           if (category[key] === true) {
@@ -62,7 +62,7 @@ export default new Vuex.Store({
           }
         }
       });
-      console.log(categoryToBeFiltered);
+      console.log("category to be filtered:", state.categoryToBeFiltered);
       if (categoryToBeFiltered.length) {
         for (let name of categoryToBeFiltered) {
           result = state.locations.filter(
@@ -71,6 +71,7 @@ export default new Vuex.Store({
         }
       }
       state.filteredLocation = result;
+      console.log("filtered location:", state.filteredLocation);
     },
     setMapView(state) {
       state.mapView = true;

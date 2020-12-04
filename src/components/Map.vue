@@ -1,11 +1,5 @@
 <template>
   <div>
-    <h4>Your coordinates:</h4>
-    <p>
-      {{ yourCoordinates.lat }} Latitude, {{ yourCoordinates.lng }} Longitude
-    </p>
-    <h4>Map coordinates:</h4>
-    <p>{{ mapCoordinates.lat }} Latitude, {{ mapCoordinates.lng }} Longitude</p>
     <GmapMap
       :zoom="7"
       :center="this.$store.state.currentLocation"
@@ -54,10 +48,6 @@ export default {
       mapCoordinates: {
         lat: 30.516319,
         lng: -81.633737,
-      },
-      markerOptions: {
-        url:
-          "https://developers.google.com/maps/documentation/javascript/examples/full/images/parking_lot_maps.png",
       },
       startOptions: {
         url: "http://maps.google.com/mapfiles/kml/paddle/ylw-stars.png",
