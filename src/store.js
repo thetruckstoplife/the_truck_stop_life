@@ -26,6 +26,7 @@ export default new Vuex.Store({
     },
     flagCount: 0,
     flagLocation: [],
+    favoriteView: false,
   },
   getters: {
     selectedFilters: (state) => {
@@ -78,6 +79,12 @@ export default new Vuex.Store({
     },
     setFlagLocation(state, location) {
       state.flagLocation.push(location);
+    },
+    setFavoriteView(state) {
+      state.favoriteView = !state.favoriteView;
+    },
+    setFlagCount(state) {
+      state.flagCount++;
     },
   },
   actions: {

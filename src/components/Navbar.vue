@@ -37,6 +37,7 @@ export default {
   width: 100%;
   box-shadow: 0px -4px 5px 0px rgba(1, 1, 1, 0.1);
 }
+
 #filter-btn {
   color: white;
   font: 400 20px Verdana;

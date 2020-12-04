@@ -2,7 +2,7 @@
   <div>
     <GmapMap
       :zoom="7"
-      :center="this.$store.state.currentLocation"
+      :center="yourCoordinates"
       map-type-id="terrain"
       style="width: 100%; height: 600px"
       :options="{
@@ -57,23 +57,14 @@ export default {
     };
   },
 
-  // created() {
-  //   // get the current coordinates from browser request
-  //   //this is going to be CC location in Japan, not the US.
-  //   //so we should use a fixed coodinates in somewhere in the US?
-  //   this.$getLocation({})
-  //     .then(coordinates => {
-  //       this.yourCoordinates = coordinates;
-  //     })
-  //     .catch(error => alert(error));
-  // },
-
   mounted() {
     this.getLocations();
   },
   computed: {
     locations() {
-      if (
+      if (this.$store.state.favoriteView) {
+        return this.$store.state.flagLocation;
+      } else if (
         this.$store.state.filter.every((flags) => {
           for (let condition in flags) {
             if (flags[condition] === true) return false;
@@ -92,9 +83,11 @@ export default {
       this.$store.dispatch("loadMarkers");
     },
     leftClicked(event) {
+      this.$store.commit("setFlagCount");
       const markLocation = JSON.stringify(event.latLng.toJSON(), null, 2);
       const reformatLocationInfo = {
         postion: JSON.parse(markLocation),
+        key: this.$store.state.flagCount,
       };
       this.$store.commit("setFlagLocation", reformatLocationInfo);
     },
