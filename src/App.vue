@@ -1,6 +1,28 @@
 <template>
   <div id="app">
     <div v-if="this.$store.state.buttonView === 'Filter'">
+      <input
+        ref="latitude"
+        class="destination"
+        type="text"
+        value="30.516319"
+        placeholder="set latitude"
+      />
+      <input
+        ref="longitude"
+        class="destination"
+        type="text"
+        value="-81.633737"
+        placeholder="set longitude"
+      />
+      <button
+        class="destination-ok"
+        type="button"
+        default
+        v-on:click="setDestination"
+      >
+        Set Destination
+      </button>
       <button class="favorite" type="button" v-on:click="changeFavoriteView">
         Favorite
       </button>
@@ -30,6 +52,13 @@ export default {
   methods: {
     changeFavoriteView() {
       this.$store.commit("setFavoriteView");
+    },
+    setDestination() {
+      const coordinates = {
+        lat: parseFloat(this.$refs.latitude.value),
+        lng: parseFloat(this.$refs.longitude.value),
+      };
+      this.$store.commit("setDestination", coordinates);
     },
   },
   created() {
