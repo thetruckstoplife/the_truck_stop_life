@@ -6,24 +6,31 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    locations: [
-      {
-        position: {
-          lat: 32.844151,
-          lng: -86.591963,
-        },
-        key: "Site 368",
-        defaultAnimation: 2,
-      },
-    ],
+    locations: [],
     buttonView: "Filter",
     filter: [
       { atm: false },
       { shower: false },
       { park: false },
       { wifi: false },
+      { mcd: false },
+      { sub: false },
+      { denny: false },
+      { br: false },
     ],
     filteredLocation: [],
+    mapView: false,
+    currentLocation: {
+      lat: 0,
+      lng: 0,
+    },
+    destinationLocation: {
+      lat: 0,
+      lng: 0,
+    },
+    flagLocation: [],
+    favoriteView: false,
+    flagKey: [],
   },
   getters: {
     selectedFilters: (state) => {
@@ -50,30 +57,79 @@ export default new Vuex.Store({
       }
     },
     setFilteredLocations(state) {
-      let result = state.location.slice();
-      if (state.filter.length > 0) {
-        for (let category of state.filter) {
-          console.log("Filtering In Progress: ", category);
-          result = result.filter((truckStop) =>
-            Object.values(truckStop).includes(category)
+      let result;
+      let categoryToBeFiltered = [];
+      console.log("filter state", state.filter);
+      state.filter.forEach((category) => {
+        for (let key in category) {
+          if (category[key] === true) {
+            categoryToBeFiltered.push(key);
+          }
+        }
+      });
+      console.log("category to be filtered:", state.categoryToBeFiltered);
+      if (categoryToBeFiltered.length) {
+        for (let name of categoryToBeFiltered) {
+          result = state.locations.filter(
+            (location) => location[name] === true
           );
-          console.log("Filtering Completed: ", category);
         }
       }
       state.filteredLocation = result;
+      console.log("filtered location:", state.filteredLocation);
+    },
+    setMapView(state) {
+      state.mapView = true;
+    },
+    setFlagLocation(state, location) {
+      for (let i = 0; i < state.flagLocation.length; i++) {
+        if (location.key === state.flagLocation[i].key) {
+          console.log("setFlagLocation: before: " + state.flagLocation);
+          state.flagLocation.splice(i, 1);
+          console.log("setFlagLocation: after: " + state.flagLocation);
+          return;
+        }
+      }
+      state.flagLocation.push(location);
+    },
+    setFavoriteView(state) {
+      state.favoriteView = !state.favoriteView;
+    },
+    setFlagKey(state, key) {
+      if (state.flagKey.includes(key)) {
+        state.flagKey.splice(state.flagKey.indexOf(key), 1);
+      } else {
+        state.flagKey.push(key);
+      }
+    },
+    setDestination(state, coordinates) {
+      state.destinationLocation.lat = coordinates.lat;
+      state.destinationLocation.lng = coordinates.lng;
+      console.log(state.destinationLocation);
     },
   },
   actions: {
     async loadMarkers({ commit }) {
       try {
         const { data: locations } = await axios.get("/api/locations"); // ES6 destructuring & aliasing
+        console.log(locations);
         const markers = locations.map((location) => ({
+          id: location.id,
           position: {
             lat: location.latitude,
             lng: location.longitude,
           },
           key: location.name,
           defaultAnimation: 2,
+          park: location.park,
+          shower: location.shower,
+          wifi: location.wifi,
+          atm: location.atm,
+          mcd: location.mcd,
+          sub: location.sub,
+          denny: location.denny,
+          br: location.br,
+          state: location.state,
         }));
         commit("setLocations", markers);
       } catch (err) {
@@ -82,28 +138,3 @@ export default new Vuex.Store({
     },
   },
 });
-
-// {
-// id: 2,
-// position: {
-//   lat: 34.367333,
-//   lng: -86.89353,
-// },
-// name: "Site 381",
-// atm: "atm",
-// shower: "shower",
-// overNightParking: "over-night-parking",
-// defaultAnimation: 2,
-// },
-// {
-// id: 3,
-// position: {
-// lat: 33.790777,
-// lng: -87.241662,
-// },
-// name: "Site 466",
-// atm: "atm",
-// shower: "shower",
-// overNightParking: "over-night-parking",
-// defaultAnimation: 2,
-// },
