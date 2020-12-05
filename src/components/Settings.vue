@@ -187,11 +187,11 @@ p {
 }
 
 input:checked + .slider {
-  background-color: #ef233c;
+  background-color: #247ba0;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #ef233c;
+  box-shadow: 0 0 1px #247ba0;
 }
 
 input:checked + .slider:before {
