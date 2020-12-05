@@ -86,13 +86,30 @@ export default new Vuex.Store({
       state.mapView = true;
     },
     setFlagLocation(state, location) {
+      for (let i = 0; i < state.flagLocation.length; i++) {
+        if (location.key === state.flagLocation[i].key) {
+          console.log("setFlagLocation: before: " + state.flagLocation);
+          state.flagLocation.splice(i, 1);
+          console.log("setFlagLocation: after: " + state.flagLocation);
+          return;
+        }
+      }
       state.flagLocation.push(location);
     },
     setFavoriteView(state) {
       state.favoriteView = !state.favoriteView;
     },
     setFlagKey(state, key) {
-      state.flagKey.push(key);
+      if (state.flagKey.includes(key)) {
+        state.flagKey.splice(state.flagKey.indexOf(key), 1);
+      } else {
+        state.flagKey.push(key);
+      }
+    },
+    setDestination(state, coordinates) {
+      state.destinationLocation.lat = coordinates.lat;
+      state.destinationLocation.lng = coordinates.lng;
+      console.log(state.destinationLocation);
     },
   },
   actions: {

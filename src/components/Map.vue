@@ -16,7 +16,7 @@
       }"
     >
       <GmapMarker :position="yourCoordinates" :icon="startOptions" />
-      <GmapMarker :position="mapCoordinates" @click="leftClicked" />
+      <GmapMarker :position="destination" :icon="destinationOptions" />
       <GmapMarker
         v-for="location in locations"
         :key="location.key"
@@ -55,6 +55,9 @@ export default {
       favoriteOptions: {
         url: "http://maps.google.com/mapfiles/kml/paddle/ylw-stars.png",
       },
+      destinationOptions: {
+        url: "http://maps.google.com/mapfiles/kml/paddle/stop.png",
+      },
     };
   },
 
@@ -77,6 +80,9 @@ export default {
       }
       return this.$store.state.filteredLocation;
     },
+    destination() {
+      return this.$store.state.destinationLocation;
+    },
     google: gmapApi,
   },
   methods: {
@@ -84,19 +90,17 @@ export default {
       this.$store.dispatch("loadMarkers");
     },
     leftClicked(key, event) {
-      if (!this.$store.state.flagKey.includes(key)) {
-        const markLocation = event.latLng.toJSON();
-        const reformatLocationInfo = {
-          position: {
-            lat: markLocation.lat,
-            lng: markLocation.lng,
-          },
-          key: key,
-          defaultAnimation: 2,
-        };
-        this.$store.commit("setFlagLocation", reformatLocationInfo);
-        this.setFlagKey(key);
-      }
+      const markLocation = event.latLng.toJSON();
+      const reformatLocationInfo = {
+        position: {
+          lat: markLocation.lat,
+          lng: markLocation.lng,
+        },
+        key: key,
+        defaultAnimation: 2,
+      };
+      this.$store.commit("setFlagLocation", reformatLocationInfo);
+      this.setFlagKey(key);
     },
     setFlagKey(key) {
       this.$store.commit("setFlagKey", key);
