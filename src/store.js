@@ -6,7 +6,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    locations: [],
+    locations: [
+      { position: { lat: 32.844151, lng: -86.591963 }, key: 20 },
+      { position: { lat: 31.419105, lng: -87.00765 }, key: 21 },
+      { position: { lat: 34.367333, lng: -86.89353 }, key: 24 },
+    ],
     buttonView: "Filter",
     filter: [
       { atm: false },
@@ -24,9 +28,13 @@ export default new Vuex.Store({
       lat: 0,
       lng: 0,
     },
-    flagCount: 0,
+    destinationLocation: {
+      lat: 0,
+      lng: 0,
+    },
     flagLocation: [],
     favoriteView: false,
+    flagKey: [],
   },
   getters: {
     selectedFilters: (state) => {
@@ -83,8 +91,8 @@ export default new Vuex.Store({
     setFavoriteView(state) {
       state.favoriteView = !state.favoriteView;
     },
-    setFlagCount(state) {
-      state.flagCount++;
+    setFlagKey(state, key) {
+      state.flagKey.push(key);
     },
   },
   actions: {

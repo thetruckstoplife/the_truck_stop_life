@@ -1,6 +1,11 @@
 <template>
   <div id="app">
     <div v-if="this.$store.state.buttonView === 'Filter'">
+      <input class="destination" type="text" placeholder="set latitude" />
+      <input class="destination" type="text" placeholder="set longitude" />
+      <button class="destination-ok" type="button">
+        Set Destination
+      </button>
       <button class="favorite" type="button" v-on:click="changeFavoriteView">
         Favorite
       </button>

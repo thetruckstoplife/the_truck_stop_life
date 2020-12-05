@@ -16,16 +16,14 @@
       }"
     >
       <GmapMarker :position="yourCoordinates" :icon="startOptions" />
-
       <GmapMarker :position="mapCoordinates" @click="leftClicked" />
-
       <GmapMarker
         v-for="location in locations"
         :key="location.key"
         :position="location.position"
         :animation="location.defaultAnimation"
-        :icon="truckOptions"
-        @rightclick="markerRightClicked"
+        :icon="setGmapMarker(location.key)"
+        @click="leftClicked(location.key, $event)"
       />
     </GmapMap>
   </div>
@@ -49,10 +47,13 @@ export default {
         lng: -81.633737,
       },
       startOptions: {
-        url: "http://maps.google.com/mapfiles/kml/paddle/ylw-stars.png",
+        url: "http://maps.google.com/mapfiles/kml/paddle/go.png",
       },
       truckOptions: {
         url: "http://maps.google.com/mapfiles/kml/shapes/truck.png",
+      },
+      favoriteOptions: {
+        url: "http://maps.google.com/mapfiles/kml/paddle/ylw-stars.png",
       },
     };
   },
@@ -82,18 +83,29 @@ export default {
     getLocations() {
       this.$store.dispatch("loadMarkers");
     },
-    leftClicked(event) {
-      this.$store.commit("setFlagCount");
-      const markLocation = JSON.stringify(event.latLng.toJSON(), null, 2);
-      const reformatLocationInfo = {
-        postion: JSON.parse(markLocation),
-        key: this.$store.state.flagCount,
-      };
-      this.$store.commit("setFlagLocation", reformatLocationInfo);
+    leftClicked(key, event) {
+      if (!this.$store.state.flagKey.includes(key)) {
+        const markLocation = event.latLng.toJSON();
+        const reformatLocationInfo = {
+          position: {
+            lat: markLocation.lat,
+            lng: markLocation.lng,
+          },
+          key: key,
+          defaultAnimation: 2,
+        };
+        this.$store.commit("setFlagLocation", reformatLocationInfo);
+        this.setFlagKey(key);
+      }
     },
-    checkClick(event) {
-      console.log(event);
-      console.log(event.target);
+    setFlagKey(key) {
+      this.$store.commit("setFlagKey", key);
+    },
+    setGmapMarker(clickedKey) {
+      if (this.$store.state.flagKey.includes(clickedKey)) {
+        return this.favoriteOptions;
+      }
+      return this.truckOptions;
     },
   },
 };
