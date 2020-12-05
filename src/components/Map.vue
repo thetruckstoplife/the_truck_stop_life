@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="full-height">
     <GmapMap
       :zoom="7"
       :center="yourCoordinates"
       map-type-id="terrain"
-      style="width: 100%; height: 600px"
+      style="width: 100%; height: 100%; position: absolute; top: 90px; left: 0px;"
       :options="{
         zoomControl: true,
         mapTypeControl: false,
@@ -115,4 +115,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped></style>

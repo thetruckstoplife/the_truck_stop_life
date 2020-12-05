@@ -36,12 +36,13 @@ export default {
   bottom: 0px;
   width: 100%;
   box-shadow: 0px -4px 5px 0px rgba(1, 1, 1, 0.1);
+  background-color: #70c1b3;
 }
 
 #filter-btn {
   color: white;
   font: 400 20px Verdana;
-  background-color: #ef233c;
+  background-color: #247ba0;
   border-radius: 40px;
   border: 0px;
   width: 100px;
@@ -53,7 +54,7 @@ export default {
 #ok-btn {
   color: white;
   font: 400 20px Verdana;
-  background-color: #ef233c;
+  background-color: #247ba0;
   border-radius: 40px;
   border: 0px;
   width: 100px;
