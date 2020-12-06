@@ -28,16 +28,16 @@
         >
           Set Route
         </button>
+        <button
+          id="favorite-btn"
+          class="favorite"
+          type="button"
+          v-on:click="changeFavoriteView"
+        >
+          Favorites
+        </button>
       </div>
 
-      <button
-        id="favorite-btn"
-        class="favorite"
-        type="button"
-        v-on:click="changeFavoriteView"
-      >
-        Favorites
-      </button>
       <Map />
     </div>
     <div v-if="this.$store.state.buttonView === 'OK'">
@@ -86,6 +86,40 @@ export default {
 </script>
 
 <style>
+@media only screen and (max-width: 600px) {
+  #top-nav {
+    margin: 0px;
+    background-color: red;
+  }
+  #top-nav .origin {
+    padding: 2px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100px;
+    position: absolute;
+    left: 20px;
+    top: 35px;
+  }
+  #top-nav .destination {
+    padding: 2px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100px;
+    position: absolute;
+    left: 120px;
+    top: 35px;
+  }
+  #top-nav .route-btn {
+    transform: scale(0.7);
+    position: absolute;
+    left: 220px;
+  }
+  #top-nav #favorite-btn {
+    transform: scale(0.7);
+    position: absolute;
+    right: 0px;
+  }
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -152,9 +186,4 @@ export default {
   margin-left: 10px;
   margin-right: 10px;
 }
-/* .favorite:hover {
-  border: solid #247ba0;
-  background-color: #ffffff;
-  color: #247ba0;
-} */
 </style>
