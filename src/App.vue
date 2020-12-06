@@ -2,6 +2,8 @@
   <div id="app">
     <div v-if="this.$store.state.buttonView === 'Filter'">
       <div id="top-nav">
+        <!-- input field for destination (lat) -->
+        <!-- if default lat to be change > pls change the value attribute -->
         <input
           ref="latitude"
           class="origin"
@@ -9,6 +11,8 @@
           value="30.516319"
           placeholder="set latitude"
         />
+        <!-- input field for destination (lng) -->
+        <!-- if default lng to be change > pls change the value attribute -->
         <input
           ref="longitude"
           class="destination"
@@ -71,8 +75,6 @@ export default {
   },
   created() {
     // get the current coordinates from browser request
-    //this is going to be CC location in Japan, not the US.
-    //so we should use a fixed coodinates in somewhere in the US?
     this.$getLocation({})
       .then((coordinates) => {
         this.$store.state.currentLocation = coordinates;

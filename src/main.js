@@ -6,6 +6,7 @@ import VueGeolocation from "vue-browser-geolocation";
 
 Vue.config.productionTip = false;
 
+// middleware -> google maps
 Vue.use(VueGoogleMaps, {
   load: {
     key: "AIzaSyDJ3sPnmTBMN1DZGJBX9gxuNg-O9mgHOAo",
@@ -14,6 +15,7 @@ Vue.use(VueGoogleMaps, {
   autobindAllEvents: false,
 });
 
+// middleware -> current location
 Vue.use(VueGeolocation);
 
 new Vue({
