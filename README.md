@@ -17,6 +17,7 @@ App demo: https://the-truck-stop-life.herokuapp.com
 
 1. アプリを開くと、全てのトラックストップを見ることができます。
 2. Filter ボタンを押すと設備ごとのフィルターをかける事ができます。
+3. マップにあるマーカーをクリックする事でその場所をお気に入りに登録することができ、Favoriteボタンを押すことで全てのお気に入りだけを見ることができます。
 
 ## Getting Started
 
@@ -28,3 +29,9 @@ App demo: https://the-truck-stop-life.herokuapp.com
 ## 使用した技術/Technologies Used:
 
 ![Used Tech](./img/UsedTech.png)
+
+##作成したメンバー/member who made this app
+-Naoto Maeda (https://github.com/naoto-1119)
+-LaShawn Toyoda (https://github.com/theyokohamalife)
+-Yosuke Mikasa (https://github.com/suke6mix)
+-Ryusei Takezono (https://github.com/ryu-take)
