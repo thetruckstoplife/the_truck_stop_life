@@ -12,7 +12,7 @@
 
 App demo: https://the-truck-stop-life.herokuapp.com
 
-![App Preview](./img/app-demo.jpg)
+![App Preview](./img/truckstoplife-demo.jpg)
 ## App の使い方
 
 1. アプリを開くと、全てのトラックストップを見ることができます。
