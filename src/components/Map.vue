@@ -22,8 +22,16 @@
         disableDefaultUi: false,
       }"
     >
+      <!-- your starting position -> currently defaulted to "yourCoordinates" for demo purpose -->
+      <!-- you can refer to real location by changing the position to "this.$store.state.currentLocation" -->
       <GmapMarker :position="yourCoordinates" :icon="startOptions" />
+      <!-- once destination is set via browser the destination pin will show in the corresponding location -->
       <GmapMarker :position="destination" :icon="destinationOptions" />
+      <!-- show pins to all truckstop information -->
+      <!-- looping locations arrayis looking into (1) locations array in default-->
+      <!-- (2) if filtered refer to filteredLocation array -->
+      <!-- (3) if favorite view refer to flagLocation array -->
+      <!-- special attribute - when clicked (a) icon will change (b) store/delete the location info from flagLocation (favorite) -->
       <GmapMarker
         v-for="location in locations"
         :key="location.key"
@@ -45,87 +53,7 @@ export default {
       // Orland, FL just for now
       //  this.$store.state.currentLocation  -> should set this as the first Gmap Marker
       defaultzoom: 5,
-
-      nightMode: [
-        { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
-        { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
-        { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
-        {
-          featureType: "administrative.locality",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#d59563" }],
-        },
-        {
-          featureType: "poi",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#d59563" }],
-        },
-        {
-          featureType: "poi.park",
-          elementType: "geometry",
-          stylers: [{ color: "#263c3f" }],
-        },
-        {
-          featureType: "poi.park",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#6b9a76" }],
-        },
-        {
-          featureType: "road",
-          elementType: "geometry",
-          stylers: [{ color: "#38414e" }],
-        },
-        {
-          featureType: "road",
-          elementType: "geometry.stroke",
-          stylers: [{ color: "#212a37" }],
-        },
-        {
-          featureType: "road",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#9ca5b3" }],
-        },
-        {
-          featureType: "road.highway",
-          elementType: "geometry",
-          stylers: [{ color: "#746855" }],
-        },
-        {
-          featureType: "road.highway",
-          elementType: "geometry.stroke",
-          stylers: [{ color: "#1f2835" }],
-        },
-        {
-          featureType: "road.highway",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#f3d19c" }],
-        },
-        {
-          featureType: "transit",
-          elementType: "geometry",
-          stylers: [{ color: "#2f3948" }],
-        },
-        {
-          featureType: "transit.station",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#d59563" }],
-        },
-        {
-          featureType: "water",
-          elementType: "geometry",
-          stylers: [{ color: "#17263c" }],
-        },
-        {
-          featureType: "water",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#515c6d" }],
-        },
-        {
-          featureType: "water",
-          elementType: "labels.text.stroke",
-          stylers: [{ color: "#17263c" }],
-        },
-      ],
+      // retromode is a google map style. The below is its setting.
       retroMode: [
         {
           elementType: "geometry",
@@ -341,26 +269,26 @@ export default {
           ],
         },
       ],
+      // default start point for demo purpose
       yourCoordinates: {
         lat: 28.538336,
         lng: -81.379234,
       },
-      // Site 603 just for now
-      mapCoordinates: {
-        lat: 30.516319,
-        lng: -81.633737,
-      },
+      // start location icon
       startOptions: {
         url: "http://maps.google.com/mapfiles/kml/paddle/go.png",
       },
+      // truck stop default icon
       truckOptions: {
-        url: "http://maps.google.com/mapfiles/kml/shapes/truck.png",
+        url: "http://maps.google.com/mapfiles/kml/paddle/orange-blank.png",
       },
+      // favorite icon
       favoriteOptions: {
-        url: "http://maps.google.com/mapfiles/kml/paddle/ylw-stars.png",
+        url: "http://maps.google.com/mapfiles/kml/paddle/orange-stars.png",
       },
+      // destination icon
       destinationOptions: {
-        url: "http://maps.google.com/mapfiles/kml/paddle/stop.png",
+        url: "http://maps.google.com/mapfiles/kml/paddle/orange-circle.png",
       },
     };
   },
@@ -370,9 +298,12 @@ export default {
   },
   computed: {
     locations() {
+      // if favorite view
       if (this.$store.state.favoriteView) {
+        // refers to flagLocation (favorite) array
         return this.$store.state.flagLocation;
       } else if (
+        // if no filter is done
         this.$store.state.filter.every((flags) => {
           for (let condition in flags) {
             if (flags[condition] === true) return false;
@@ -380,8 +311,10 @@ export default {
           return true;
         })
       ) {
+        // refer to locations array (all truck stop)
         return this.$store.state.locations;
       }
+      // else refer to filteredLocation (filtered truck stop)
       return this.$store.state.filteredLocation;
     },
     destination() {
@@ -394,7 +327,8 @@ export default {
       this.$store.dispatch("loadMarkers");
     },
     leftClicked(key, event) {
-      const markLocation = event.latLng.toJSON();
+      const markLocation = event.latLng.toJSON(); // extract latLng info of the marker
+      // store location info in the pre-formated way
       const reformatLocationInfo = {
         position: {
           lat: markLocation.lat,
@@ -403,12 +337,15 @@ export default {
         key: key,
         defaultAnimation: 2,
       };
+      // set extracte -> reformated location info in flagLocation array
       this.$store.commit("setFlagLocation", reformatLocationInfo);
+      // store key info of the location to flagKey array
       this.setFlagKey(key);
     },
     setFlagKey(key) {
       this.$store.commit("setFlagKey", key);
     },
+    // check location is flag -> if flagged swaps icon to favorite icon
     setGmapMarker(clickedKey) {
       if (this.$store.state.flagKey.includes(clickedKey)) {
         return this.favoriteOptions;

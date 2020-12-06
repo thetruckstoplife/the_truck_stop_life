@@ -71,8 +71,6 @@ export default {
   },
   created() {
     // get the current coordinates from browser request
-    //this is going to be CC location in Japan, not the US.
-    //so we should use a fixed coodinates in somewhere in the US?
     this.$getLocation({})
       .then((coordinates) => {
         this.$store.state.currentLocation = coordinates;
