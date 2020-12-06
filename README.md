@@ -22,6 +22,7 @@ App demo: https://the-truck-stop-life.herokuapp.com
 
 1. You can see all nearby truck stops when you open the app.  
 2. You can filter truck stop amenities by pushing the filter button and toggling your selections on or off.
+3. You can save your favorite locations by tapping on markers, and view them by pushing the "Favorites" button.
 
 
 ## 使用した技術/Technologies Used:
