@@ -26,7 +26,7 @@ App demo: https://the-truck-stop-life.herokuapp.com
 3. You can save your favorite locations by tapping on markers, and view them by pushing the "Favorites" button.
 
 
-## 使用した技術/Technologies Used:
+## 使用した技術/Technologies Used:  
 
 ![Used Tech](./img/UsedTech.png)
 
