@@ -10,7 +10,7 @@
 
 "The Truck Stop Life" can help users find nearby truck stops as they're traveling across the US. They are able to filter locations that have specific amenities, such as ATMs, restaurants, and more! 🚚
 
-App demo: https://the-truck-stop-life.herokuapp.com
+App demo: https://the-truck-stop-life-prod.herokuapp.com/
 
 ![App Preview](./img/truckstoplife-demo.jpg)
 ## App の使い方
