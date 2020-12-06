@@ -30,8 +30,8 @@ App demo: https://the-truck-stop-life.herokuapp.com
 
 ![Used Tech](./img/UsedTech.png)
 
-##作成したメンバー/member who made this app
--Naoto Maeda (https://github.com/naoto-1119)
--LaShawn Toyoda (https://github.com/theyokohamalife)
--Yosuke Mikasa (https://github.com/suke6mix)
--Ryusei Takezono (https://github.com/ryu-take)
+##作成したメンバー/Member who made this app
+-Naoto Maeda (https://github.com/naoto-1119)  
+-LaShawn Toyoda (https://github.com/theyokohamalife)  
+-Yosuke Mikasa (https://github.com/suke6mix)  
+-Ryusei Takezono (https://github.com/ryu-take)  
